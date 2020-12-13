@@ -1,0 +1,60 @@
+﻿@model Test.Models.DB.Tbinvoice
+
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Edit</h1>
+
+ 
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Guidinvoice" />
+            <div class="form-group">
+                <label asp-for="InvoiceDate" class="control-label"></label>
+                <input asp-for="InvoiceDate" class="form-control" />
+                <span asp-validation-for="InvoiceDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Guidsales" class="control-label"></label>
+                <select asp-for="Guidsales" class="form-control" asp-items="ViewBag.Guidsales"></select>
+                <span asp-validation-for="Guidsales" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Guidcourier" class="control-label"></label>
+                <select asp-for="Guidcourier" class="form-control" asp-items="ViewBag.Guidcourier"></select>
+                <span asp-validation-for="Guidcourier" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Guidpayment" class="control-label"></label>
+                <select asp-for="Guidpayment" class="form-control" asp-items="ViewBag.Guidpayment"></select>
+                <span asp-validation-for="Guidpayment" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ShipTo" class="control-label"></label>
+                <input asp-for="ShipTo" class="form-control" />
+                <span asp-validation-for="ShipTo" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TargetTo" class="control-label"></label>
+                <input asp-for="TargetTo" class="form-control" />
+                <span asp-validation-for="TargetTo" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

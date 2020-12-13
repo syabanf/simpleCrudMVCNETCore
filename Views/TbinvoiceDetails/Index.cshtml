@@ -1,0 +1,69 @@
+﻿@model IEnumerable<Test.Models.DB.TbinvoiceDetail>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Invoices Detail</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Item)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Weight)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Qty)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.UnitPrice)
+            </th>
+            <th>
+               Subtotal
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.GuidinvoiceNavigation.InvoiceNumber)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Item)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Weight)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Qty)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UnitPrice)
+            </td>
+            <td>
+               @{
+                   int subtotal = item.Qty * item.UnitPrice;
+                }
+               @subtotal
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.GuidinvoiceNavigation.InvoiceNumber)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.GuidinvoiceDetail">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.GuidinvoiceDetail">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.GuidinvoiceDetail">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
