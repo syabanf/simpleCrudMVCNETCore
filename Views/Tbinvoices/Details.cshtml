@@ -1,0 +1,61 @@
+﻿@model Test.Models.DB.Tbinvoice
+
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Invoice</h1>
+
+<div>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.InvoiceNumber))
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.InvoiceNumber)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.InvoiceDate)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.InvoiceDate)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.ShipTo)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.ShipTo)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.TargetTo)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.TargetTo)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.GuidcourierNavigation.CourierName)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.GuidcourierNavigation.CourierName)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.GuidpaymentNavigation.PaymentType)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.GuidpaymentNavigation.PaymentType)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.GuidsalesNavigation.SalesName)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.GuidsalesNavigation.SalesName)
+        </dd>
+
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.Guidinvoice">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

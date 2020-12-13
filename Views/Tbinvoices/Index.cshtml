@@ -1,0 +1,94 @@
+﻿@model IEnumerable<Test.Models.DB.Tbinvoice>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Invoices</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.InvoiceDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.InvoiceNumber)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ShipTo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TargetTo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.GuidcourierNavigation.CourierName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.GuidpaymentNavigation.PaymentType)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.GuidsalesNavigation.SalesName)
+            </th>
+            <th>
+               GrandTotal
+            </th>
+            <th>
+                ShippingPrice
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.InvoiceDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.InvoiceNumber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ShipTo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TargetTo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.GuidcourierNavigation.CourierName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.GuidpaymentNavigation.PaymentType)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.GuidsalesNavigation.SalesName)
+            </td>
+            <td>
+                @{
+                    int grandTotal = item.TbinvoiceDetails.Select(t => new
+                    {
+                        subtotal = t.Qty * t.UnitPrice
+                    }).Sum(x => x.subtotal);
+                }
+                @grandTotal
+            </td>
+            <td>
+                @{
+                    int shippingPrice = item.TbinvoiceDetails.Sum(x => x.Weight) * item.GuidcourierNavigation.Cost;
+                }
+                @shippingPrice
+            </td>
+
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Guidinvoice">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.Guidinvoice">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.Guidinvoice">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
