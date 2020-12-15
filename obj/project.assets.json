@@ -8756,11 +8756,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\WGSTest\\WebApp\\Test\\Test.csproj",
+      "projectUniqueName": "D:\\WGSTest\\simpleCrudMVCNETCore\\Test.csproj",
       "projectName": "Test",
-      "projectPath": "D:\\WGSTest\\WebApp\\Test\\Test.csproj",
+      "projectPath": "D:\\WGSTest\\simpleCrudMVCNETCore\\Test.csproj",
       "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
-      "outputPath": "D:\\WGSTest\\WebApp\\Test\\obj\\",
+      "outputPath": "D:\\WGSTest\\simpleCrudMVCNETCore\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"

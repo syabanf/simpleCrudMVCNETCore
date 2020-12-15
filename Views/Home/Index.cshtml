@@ -1,8 +1,126 @@
-﻿@{
+﻿@model Test.Models.DB.Tbinvoice
+@{
     ViewData["Title"] = "Home Page";
 }
 
-    <div class="row">
-        <label>WGS TEST</label>
+<div class="container-fluid">
+    <div class="row form-group">
+        <div class="col-md-2">
+            <label> No Invoice </label>
+        </div>
+        <form asp-action="Index" class="col-md-10">
+            <div class="input-group mb-3">
+                <select asp-for="Guidinvoice" class="form-control dropdown" style="width=100%;" asp-items="ViewBag.InvoiceNumbers"></select>
+                <div class="input-group-append">
+                   <button type="submit" class="btn btn-primary">Search</button>
+                </div>
+            </div>
+        </form>
     </div>
-
+    <br />
+    <hr />
+    @{ var data = Model;}
+    <div class="row form-group">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="row">
+                    <div class="col-md-3">
+                        <label>Invoice Date</label>
+                    </div>
+                    <div class="col-md-3">
+                        <input style="width=100%;" value="@data.InvoiceDate" />
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-3">
+                        <label>To</label>
+                    </div>
+                    <div class="col-md-3">
+                        <textarea style="width=100%;" class="form-control">@data.TargetTo</textarea>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-3">
+                        <label>Courier Name</label>
+                    </div>
+                    <div class="col-md-3">
+                        <input style="width=100%;" class="form-control" value="@data.GuidcourierNavigation.CourierName" />
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-3">
+                        <label>Sales Name</label>
+                    </div>
+                    <div class="col-md-3">
+                        <input  style="width=100%;" class="form-control" value="@data.GuidsalesNavigation.SalesName" />
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="row">
+                    <div class="col-md-6">
+                        <label>Ship To</label>
+                    </div>
+                    <div class="col-md-3">
+                        <textarea style="width=100%;" class="form-control">@data.ShipTo</textarea>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <label>Payment Type</label>
+                    </div>
+                    <div class="col-md-3">
+                        <input style="width=100%;" class="form-control" value="@data.GuidpaymentNavigation.PaymentType" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <table class="table">
+            <tr>
+                <th>Item</th>
+                <th>Weight</th>
+                <th>Qty</th>
+                <th>Unit Price</th>
+                <th>Total</th>
+            </tr>
+            @foreach (var detail in data.TbinvoiceDetails)
+            {
+                <tr>
+                    <td>@detail.Item</td>
+                    <td>@detail.Weight</td>
+                    <td>@detail.Qty</td>
+                    <td>@detail.UnitPrice</td>
+                    <td>@{var subtotal = detail.Qty * detail.UnitPrice;} @subtotal</td>
+                </tr>
+            }
+        </table>
+    </div>
+    <br />
+    <hr />
+    <div class="row">
+        <div class="col-md-6">
+            <label>Subtotal</label>
+        </div>
+        <div class="col-md-6">
+            @ViewBag.subTotal
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <label>Courier Fee</label>
+        </div>
+        <div class="col-md-6">
+            @ViewBag.courierFee
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <label>Total</label>
+        </div>
+        <div class="col-md-6">
+            @ViewBag.total
+        </div>
+    </div>
+</div>

@@ -64,7 +64,8 @@ namespace Test.Controllers
         {
             if (ModelState.IsValid)
             {
-                tbinvoice.InvoiceNumber ="INV-"+  _context.Tbinvoices.Count();
+                var counter = _context.Tbinvoices.Count() + 1;
+                tbinvoice.InvoiceNumber ="INV-"+ counter ;
                 tbinvoice.Guidinvoice = Guid.NewGuid();
                 _context.Add(tbinvoice);
                 await _context.SaveChangesAsync();
